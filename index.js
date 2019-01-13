@@ -16,4 +16,4 @@ bot.hear(['Hello', 'Hi', 'Hey'], (payload, chat) => {
     chat.say('Hello there');
 })
 
-bot.start();
+bot.start(80);
