@@ -2,8 +2,8 @@
 const BootBot = require('bootbot');
 
 const bot = new BootBot({
-  accessToken: 'EAADomVLmJ6gBALuttiCgcUiHYB8hYDGOKTI30NqlF0r5pQ8jadmCsMHElbUvO3tUXalOTw1XlqzLynuie5iPJMJyy8HoOYA9Nt0ONpEp56PfeE75opDa1lgvw8mXHf56Pc3RqVr2ca70RpxETtc6uNwl5RgfMVyjPzdgUwZDZD',
-  verifyToken: 'FB_VERIFY_TOKENasdaddfdsfdseqwe123123esadasdew123123esasadsdw12',
+  accessToken: 'EAADomVLmJ6gBAIOdZCNpTWfvDrawhLPEKGhOZAqMeSXwRQpm7yywOKYyGv8v9aU0XEU50UWZCboAU7eiXtOA711yIS9tpJ4tSJ5ci74JrsZBfCba2fr7HJ2xzUUptttFwb5Tc4s6DJF7fUR3Ru34rYOZBMwQdUOuBWgnXSSoIwAZDZD',
+  verifyToken: 'asdaddfdsfdseqwe123123esadasdew123123esasadsdw12asdaddfdsfdseqwe123123esadasdew123123esasadsdw12',
   appSecret: '26fb8c67859ccd99652991e82bb5ce41'
 });
 
