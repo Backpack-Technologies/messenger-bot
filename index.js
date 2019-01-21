@@ -2,20 +2,18 @@
 const BootBot = require('bootbot');
 const amazonPrice = require('./Components/AmazonPrice')
 const data = require('./Data/data')
+const backpackSearch = require('./Components/BackpackSearch')
+
 
 const bot = new BootBot({
-  accessToken: "EAADomVLmJ6gBAPQL6wbZADfWpfMgBRjIhoSwFXKcBY4sKZBAgfUVt0fbZCJIaJzZCznD9sWHOdbYonCVxZA7JRXMU17kerYCrERZBrL3e60fMZCu7yHuWBeoxdPEXqw12bpZCecZCtH7yHWrUgaeuZARxDtrSS9BykWYWxh6hqIdHagQZDZD",
+  accessToken: "EAAfsZAH9N8uwBAMdxziYPr0IqAa2ElVGS1Lva7duqW9G5OSJgOFQC1MSFeMhSn3hJVuM9RUJytZA4Vy1hwTrJxxl4ZBZAVokdphovnZBCIEZAoU8GoTrYye0LXc5BprWdqZBPxHk2hzJPIyKZBaWy85o9EJXkTOFXzyIe7JRZBCngrQZDZD",
   verifyToken: "test-test",
-  appSecret: "26fb8c67859ccd99652991e82bb5ce41"
+  appSecret: "eb96bc541c44c82904c9e5da3ae040ad"
 });
 
 bot.on('message', (payload, chat) => {
 	const text = payload.message.text;
   console.log(`The user said: ${text}`);
-  chat.say({
-    text: text,
-    quickReplies: ['Get Started']
-  });
 });
 
 bot.hear(['hello', 'hi', /hey( there)?/i, 'Get started'], (payload, chat) => {
@@ -23,12 +21,9 @@ bot.hear(['hello', 'hi', /hey( there)?/i, 'Get started'], (payload, chat) => {
     chat.say({
       text: data.welcome.text(user),
       quickReplies: data.welcome.options
-    });
+    }, { typing: 200 });
   }).catch(err => {
-    chat.say({
-      text: data.welcome.text("user"),
-      quickReplies: data.welcome.options
-    });
+    console.log(err);
   })
 });
 
@@ -76,18 +71,56 @@ For more: https://support.backpackbang.com/hc/en-us/articles/115002629552-How-do
   }
 })
 
+bot.hear('Find a item', (payload, chat) => {
+
+	const askProduct = (convo) => {
+		convo.ask(`What do you want to buy?`, (payload, convo) => {
+			const text = payload.message.text;
+			convo.set('product', text);
+			convo.say(`Oh, you want to buy "${text}"`).then(() => sendSummary(convo));
+		});
+	};
+
+	const sendSummary = async (convo) => {
+    convo.say('Here are the top products I have found for you', {typing: 2000});
+    const query = convo.get('product');
+    const results = await backpackSearch.backpackSearch(query);
+    
+    const cards = results.slice(0,10).map(item => {
+      return {
+        title: item.name.length > 80 ? item.name.slice(0, 80) : item.name,
+        subtitle: 'Price: ' + item.totalPrice.value + " BDT",
+        image_url: item.image,
+        default_action: {
+          type: 'web_url',
+          url: 'https://backpackbang.com/item/' + item.asin
+        }
+      }
+    });
+    convo.say({
+      cards: cards
+    });
+      convo.end();
+	};
+
+	chat.conversation((convo) => {
+		askProduct(convo);
+	});
+});
+
 const dfs = (node) => {
   if(!node || !node.options || !node.options.length) return;
   if(!node.answer || !node.answer.length) return;
   if(node.options.length == 1 && node.options[0] == "Get Started") return;
 
   for(let i=0; i<node.options.length; i++) {
+    if(!node.answer[i].text) continue
     bot.hear(node.options[i], (payload, chat) => {
       if(node.answer[i].options) {
         chat.say({
           text: node.answer[i].text,
           quickReplies: node.answer[i].options
-        })
+        }, {typing: 200})
       }
       else {
         chat.say(node.answer[i].text)
@@ -99,3 +132,5 @@ const dfs = (node) => {
 
 dfs(data.welcome);
 bot.start();
+
+

@@ -12,7 +12,7 @@ Tell me something about yourself.`
         },
         options: [
             'Price of a Item',
-            // 'Find a Item',
+            'Find a Item',
             'New Shopper',
             'Existing Shopper',
             'Traveller',

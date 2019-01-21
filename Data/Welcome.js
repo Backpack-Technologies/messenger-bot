@@ -12,8 +12,7 @@ const priceOfAItem = {
     answer: priceOfAItemOptionsAnswer
 }
 const findAItem = {
-    text: "What do you want to search?",
-    options: ['Get Started']
+    // text: "What do you want to search?"
 }
 const newShopper = {
     text: 'What do you want to know?',
@@ -93,7 +92,7 @@ You can also find us here - 1st Floor of House 292, Road 19/B, Mohakhali DOHS (h
 }
 const welcomeOptionsAns = [
     priceOfAItem,
-    // findAItem,
+    findAItem,
     newShopper,
     existingShopper,
     traveller,
