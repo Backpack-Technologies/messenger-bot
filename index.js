@@ -4,6 +4,30 @@ const amazonPrice = require('./Components/AmazonPrice')
 const data = require('./Data/data')
 const backpackSearch = require('./Components/BackpackSearch')
 
+var fs = require('fs');
+var http = require('http');
+var https = require('https');
+var privateKey  = fs.readFileSync('/certs/tls.key', 'utf8');
+var certificate = fs.readFileSync('/certs/tls.crt', 'utf8');
+
+var credentials = {key: privateKey, cert: certificate};
+var express = require('express');
+var app = express();
+
+// your express configuration here
+
+var httpServer = http.createServer(app);
+var httpsServer = https.createServer(credentials, app);
+
+httpServer.listen(2900);
+httpsServer.listen(3000);
+
+ipAddress = '35.244.12.237';
+
+app.post('*', (req, res) => {
+  var url = "http://" + ipAddress + ":3100" + req.url;
+  res.redirect(307,url);
+});
 
 const bot = new BootBot({
   accessToken: "EAAfsZAH9N8uwBAMdxziYPr0IqAa2ElVGS1Lva7duqW9G5OSJgOFQC1MSFeMhSn3hJVuM9RUJytZA4Vy1hwTrJxxl4ZBZAVokdphovnZBCIEZAoU8GoTrYye0LXc5BprWdqZBPxHk2hzJPIyKZBaWy85o9EJXkTOFXzyIe7JRZBCngrQZDZD",
@@ -130,6 +154,6 @@ const dfs = (node) => {
 }
 
 dfs(data.welcome);
-bot.start();
+bot.start(3100);
 
 
