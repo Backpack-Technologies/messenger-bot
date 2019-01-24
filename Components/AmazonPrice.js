@@ -2,6 +2,7 @@ const rp = require('request-promise');
 
 const getAsinFromLink = (link) => {
     let pos = link.search('/dp/');
+    console.log(pos);
     if(pos == -1) {
         pos = link.search('/product/');
         pos += 9;
@@ -9,6 +10,7 @@ const getAsinFromLink = (link) => {
     else pos += 4;
     let asin = "";
     while(pos < link.length && asin.length < 10) asin += link[pos], pos++;
+    console.log(asin);
     return asin;
 }
 
@@ -18,8 +20,13 @@ const amazonPrice = async (ASIN) => {
         uri: 'https://api.backpackbang.com/api/v1/items/' + ASIN,
         json: true
       };
-    const item = await rp(options);
-    return item;
+    try {
+        const item = await rp(options);
+        return item;
+    }
+    catch(err) {
+        return undefined
+    }
 }
 
 module.exports = {

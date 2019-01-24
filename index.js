@@ -28,7 +28,6 @@ bot.hear(['hello', 'hi', /hey( there)?/i, 'Get started'], (payload, chat) => {
 });
 
 bot.hear(/.*amazon.com\/.*/i, async (payload, chat) => {
-  console.log("asda");
   const link = payload.message.text;
   const asin = amazonPrice.getAsinFromLink(link);
   if(asin.length < 10) {
@@ -71,10 +70,10 @@ For more: https://support.backpackbang.com/hc/en-us/articles/115002629552-How-do
   }
 })
 
-bot.hear('Find a item', (payload, chat) => {
+bot.hear(['Find an item', /.*search.*/i, /.*look.*/i], (payload, chat) => {
 
 	const askProduct = (convo) => {
-		convo.ask(`What do you want to buy?`, (payload, convo) => {
+		convo.ask(`What do you want to buy? Just mention the product name.`, (payload, convo) => {
 			const text = payload.message.text;
 			convo.set('product', text);
 			convo.say(`Oh, you want to buy "${text}"`).then(() => sendSummary(convo));

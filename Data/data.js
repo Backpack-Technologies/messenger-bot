@@ -3,16 +3,14 @@ module.exports = {
     welcome: {
         text: (user) => {
             return (
-`Hi, ${user.first_name}! Nice to meet you.
+`Hi, ${user.first_name}!  Thanks for writing in! 
 
-We are Backpack. Backpack is a silicon valley based marketplace connecting shoppers and travelers with a keen eye on providing excellent overseas shopping and traveling experience.
-
-Tell me something about yourself.`
+How can we help you today? Please select an option from here? We’d be happy to help! 🙂 `
             )
         },
         options: [
-            'Price of a Item',
-            'Find a Item',
+            'Price of an Item',
+            'Find an Item',
             'New Shopper',
             'Existing Shopper',
             'Traveller',

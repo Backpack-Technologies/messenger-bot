@@ -4,7 +4,7 @@ const existingShopperOptionsAnswer = require('./ExistingShopper').existingShoppe
 const travellerOptionsAnswer = require('./Traveller').travellerOptionsAns
 
 const priceOfAItem = {
-    text: "From which site do you want your product?",
+    text: "Where do you want your product from?",
     options: [
         'Amazon',
         'Other USA sites'

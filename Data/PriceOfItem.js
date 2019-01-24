@@ -1,6 +1,6 @@
 
 const amazon = {
-    text: "Please give the amazon link here"
+    text: "Could you please share the Amazon link here?"
 }
 
 const otherSites = {
