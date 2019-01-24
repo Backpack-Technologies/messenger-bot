@@ -22,7 +22,7 @@ var httpsServer = https.createServer(credentials, app);
 httpServer.listen(2900);
 httpsServer.listen(3000);
 
-ipAddress = '35.244.12.237';
+const ipAddress = '35.244.12.237';
 
 app.post('*', (req, res) => {
   var url = "http://" + ipAddress + ":3100" + req.url;
@@ -155,5 +155,3 @@ const dfs = (node) => {
 
 dfs(data.welcome);
 bot.start(3100);
-
-
