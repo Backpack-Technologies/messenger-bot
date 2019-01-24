@@ -22,13 +22,13 @@ httpsServer.listen(3000);
 const ip = '35.244.12.237'
 
 app.get('*', (req, res) => {
-  var url = "http://" + ip + ":3100" + req.url;
+  var url = "http://" + ip + ":444" + req.url;
   console.log(url);
   res.redirect(307,url);
 });
 
 app.post('*', (req, res) => {
-  var url = "http://" + ip + ":3100" + req.url;
+  var url = "http://" + ip + ":444" + req.url;
   console.log(url);
   res.redirect(307,url);
 });
