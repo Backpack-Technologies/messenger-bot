@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: messenger-bot
-          image: gcr.io/backpack-782cb/messenger-bot:v1
+          image: gcr.io/backpack-782cb/messenger-bot:latest
           env:
             - name: CERT_PATH
               value: /certs/tls.crt

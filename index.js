@@ -14,18 +14,19 @@ var credentials = {key: privateKey, cert: certificate};
 var express = require('express');
 var app = express();
 
-// your express configuration here
-
 var httpServer = http.createServer(app);
 var httpsServer = https.createServer(credentials, app);
 
 httpServer.listen(2900);
 httpsServer.listen(3000);
 
-const ipAddress = '35.244.12.237';
+app.get('*', (req, res) => {
+  var url = "http://" + req.host + ":3100" + req.url;
+  res.redirect(307,url);
+});
 
 app.post('*', (req, res) => {
-  var url = "http://" + ipAddress + ":3100" + req.url;
+  var url = "http://" + req.host + ":3100" + req.url;
   res.redirect(307,url);
 });
 
