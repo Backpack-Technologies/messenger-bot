@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/Backpack-Technologies/messenger-bot#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "bootbot": "^1.0.16",
+    "express-http-proxy": "^1.5.1",
     "request": "^2.88.0",
     "request-promise": "^4.2.2"
   }

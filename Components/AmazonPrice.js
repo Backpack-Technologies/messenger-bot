@@ -29,7 +29,29 @@ const amazonPrice = async (ASIN) => {
     }
 }
 
+const priceSeparator = (price) => {
+    price = price.toString();
+    let ret = "";
+    let cnt = 0;
+    let flg = 0;
+    for(let i=price.length-1; i>=0; i--) {
+        if(cnt == 3 && !flg) {
+            flg = 1;
+            cnt = 0;
+            ret = "," + ret;
+        }
+        if(cnt == 2 && flg) {
+            ret = "," + ret;
+            cnt = 0;
+        }
+        ret = price[i] + ret;
+        cnt++;
+    }
+    return ret;
+}
+
 module.exports = {
     getAsinFromLink,
-    amazonPrice
+    amazonPrice,
+    priceSeparator
 }

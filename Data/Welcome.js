@@ -14,6 +14,9 @@ const priceOfAItem = {
 const findAItem = {
     // text: "What do you want to search?"
 }
+const valentineDayContest = {
+    
+}
 const newShopper = {
     text: 'What do you want to know?',
     options: [
@@ -76,23 +79,31 @@ For starting up, if you are a regular shopper at Backpack, you can write us an e
 In fact, we are giving the cashback from our profits, for this reason, the amount will differ according to the products the shopper purchase from us.
 
 We also have a tier system, where if you buy more, you will get more percentage from our side. For example, if the shopper spends 1000-1500$ we will offer minimum 5% cash back, for 1500-2000$ we will offer minimum 6%, and for greater than 2000$ it might reach up to minimum 7%.`,
-    options: ['Get Started']
+    options: ['Ask other questions']
 }
 const others =  {
     text:
-`Thanks for writing in! Could you please send us a message through this link: https://backpackbang.com/backpack/messages so that we can check and help you with the process? Thank you!`,
-    options: ['Get Started']  
+`Hi, I’ve informed our customer support team and they will respond to you soon!`,
+    options: ['Ask other questions']  
 }
 const contactUs = {
     text:
-`You can always send us an email at support@backpackbang.com; we'll get back to you within 30 minutes to an hour. You can also send us a message directly from your Backpack account through this link: https://backpackbang.com/backpack/messages 
+`You can always send us an email at support@backpackbang.com;
 
-You can also find us here - 1st Floor of House 292, Road 19/B, Mohakhali DOHS (http://imgur.com/tVdYupZ). Thanks!`,
-    options: ['Get Started']
+You can also send us a message directly from your Backpack account through this link: https://backpackbang.com/backpack/messages
+
+Also you can reach us at this 01757-869069 from 10 am to 6 pm ( Only business days )
+
+If you have a connection page, you can send us messages directly from the message section on that page as well.
+
+Happy Backpacking 😊`,
+    options: ['Ask other questions']
 }
+
 const welcomeOptionsAns = [
     priceOfAItem,
     findAItem,
+    valentineDayContest,
     newShopper,
     existingShopper,
     traveller,

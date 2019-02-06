@@ -3,14 +3,13 @@ module.exports = {
     welcome: {
         text: (user) => {
             return (
-`Hi, ${user.first_name}!  Thanks for writing in! 
-
-How can we help you today? Please select an option from here? We’d be happy to help! 🙂 `
+`How can I help you today? Please select an option from here? We’d be happy to help! 🙂 `
             )
         },
         options: [
             'Price of an Item',
             'Find an Item',
+            'Valentine’s Day contest',
             'New Shopper',
             'Existing Shopper',
             'Traveller',

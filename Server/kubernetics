@@ -1,23 +1,23 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: messenger-bot
+  name: messenger-bot-server
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: messenger-bot
+      app: messenger-bot-server
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: messenger-bot
-      name: messenger-bot
+        app: messenger-bot-server
+      name: messenger-bot-server
     spec:
       containers:
-        - name: messenger-bot
-          image: gcr.io/backpack-782cb/messenger-bot:v29
+        - name: messenger-bot-server
+          image: gcr.io/backpack-782cb/messenger-bot-server:latest
           env:
             - name: CERT_PATH
               value: /certs/tls.crt
@@ -25,7 +25,7 @@ spec:
               value: /certs/tls.key
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 7000
+            - containerPort: 3000
               protocol: TCP
           resources:
             requests:
@@ -44,15 +44,15 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: messenger-bot
-  name: messenger-bot
+    app: messenger-bot-server
+  name: messenger-bot-server
 spec:
   type: LoadBalancer
   loadBalancerIP: 35.244.12.237
   ports:
-    - name: messenger-bot
+    - name: messenger-bot-server
       port: 443
       protocol: TCP
-      targetPort: 7000
+      targetPort: 3000
   selector:
-    app: messenger-bot
+    app: messenger-bot-server
